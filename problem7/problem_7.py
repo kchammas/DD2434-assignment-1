@@ -278,8 +278,11 @@ def double_centering_trick(distances):
     assert(distances.tolist() == distances.T.tolist())
 
     n, m = distances.shape
-
     distances = np.copy(distances)
+
+    # square the distances for the double centering trick
+    distances = distances**2
+
     distances = -0.5*(distances - (1/n)*distances@np.ones((n,1))@np.ones((n,1)).T - (1/n)*np.ones((n,1))@np.ones((n,1)).T@distances + (1/(n**2))*np.ones((n,1))@np.ones((n,1)).T@distances@np.ones((n,1))@np.ones((n,1)).T)
 
     return distances
