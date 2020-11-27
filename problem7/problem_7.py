@@ -131,7 +131,7 @@ def mds(A, n_components=2, is_gram_matrix=False, attribute_importance=False):
     eig_val = np.real(eig_val)
     eig_vec = np.real(eig_vec)
 
-    # non-decreasing eigen value order
+    # non-increasing eigen value order
     idx = np.argsort(eig_val)[::-1]
     eig_val = eig_val[idx]
     eig_vec = eig_vec[:, idx]
@@ -311,8 +311,8 @@ def plot_points(points, colors, annotations=None, mode=None, pca_explained_varia
 
     if mode == "PCA":
         plt.title("Dimensionality Reduction with PCA")
-        plt.xlabel("Principal Component 1 - " + str(np.round(pca_explained_variance[0], 3)) + "% explained variance")
-        plt.ylabel("Principal Component 2 - " + str(np.round(pca_explained_variance[1], 3)) + "% explained variance")
+        plt.xlabel("Principal Component 1 - " + str(np.round(pca_explained_variance[0]*100, 1)) + "% explained variance")
+        plt.ylabel("Principal Component 2 - " + str(np.round(pca_explained_variance[1]*100, 1)) + "% explained variance")
     elif mode == "MDS":
         if mds_attribute_importance == True:
             plt.title("Dimensionalty Reduction with MDS - with attribute importance")
